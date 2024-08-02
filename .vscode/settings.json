@@ -9,7 +9,7 @@
   //   "source.fixAll.eslint": "explicit"
   // },
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
+    "source.fixAll.eslint": "explicit"
   },
   "editor.formatOnSave": false,
   "eslint.workingDirectories": ["./backend", "./frontend"]

@@ -16,10 +16,5 @@
   "globals": {
     "window": true,
     "module": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }

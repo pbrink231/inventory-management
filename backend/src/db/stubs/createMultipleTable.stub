@@ -1,0 +1,40 @@
+import { Kysely, sql } from 'kysely'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function up(db: Kysely<any>): Promise<void> {
+  await db.schema
+    .createTable('some_table')
+    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .addColumn('company_id', 'integer', (col) => col.references('companies.id').notNull())
+    .addColumn('created_at', 'timestamptz', (col) => col.defaultTo(sql`now()`).notNull())
+    .addColumn('updated_at', 'timestamptz', (col) => col.defaultTo(sql`now()`).notNull())
+    .addColumn('first_name', 'varchar', (col) => col.notNull())
+    .addColumn('last_name', 'varchar')
+    .addColumn('gender', 'varchar(50)', (col) => col.notNull())
+    .execute()
+
+  await db.schema
+    .createTable('pet')
+    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .addColumn('company_id', 'integer', (col) => col.references('companies.id').notNull())
+    .addColumn('created_at', 'timestamptz', (col) => col.defaultTo(sql`now()`).notNull())
+    .addColumn('updated_at', 'timestamptz', (col) => col.defaultTo(sql`now()`).notNull())
+    .addColumn('name', 'varchar', (col) => col.notNull().unique())
+    .addColumn('owner_id', 'integer', (col) =>
+      col.references('some_table.id').onDelete('cascade').notNull(),
+    )
+    .addColumn('species', 'varchar', (col) => col.notNull())
+    .execute()
+
+  await db.schema
+    .createIndex('pet_owner_id_index')
+    .on('pet')
+    .column('owner_id')
+    .execute()
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function down(db: Kysely<any>): Promise<void> {
+  await db.schema.dropTable('pet').execute()
+  await db.schema.dropTable('some_table').execute()
+}

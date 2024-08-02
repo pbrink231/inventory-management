@@ -1,0 +1,14 @@
+{
+  "name": "inventory-management",
+  "description": "for inventory",
+  "scripts": {
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Peter Brink",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
