@@ -1,5 +1,7 @@
 # Inventory Managment System
 
+## Not function yet, Still Early stages
+
 ## Goal by end of year
 
 - multi location
