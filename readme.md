@@ -1,6 +1,6 @@
 # Inventory Managment System
 
-## Goal before end of year
+## Goal by end of year
 
 - multi location
 - products have to have atleast 1 variant
